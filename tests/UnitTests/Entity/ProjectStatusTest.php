@@ -15,26 +15,28 @@
  * limitations under the License.
  */
 
+declare(strict_types=1);
+
 namespace App\Tests\UnitTests\Entity;
 
-use App\Entity\Project;
 use App\Entity\ProjectStatus;
 use App\Tests\Contract\AbstractEntityUnitTest;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * Class ProjectTest
+ * Class ProjectStatusTest
  *
  * @package App\Tests\UnitTests\Entity
  * @author  Jesse Rushlow <jr@geeshoe.com>
  */
-class ProjectTest extends AbstractEntityUnitTest
+class ProjectStatusTest extends AbstractEntityUnitTest
 {
     /**
      * @inheritDoc
      */
     protected function setUp(): void
     {
-        $this->setEntitySignature(Project::class);
+        $this->setEntitySignature(ProjectStatus::class);
     }
 
     /**
@@ -45,9 +47,7 @@ class ProjectTest extends AbstractEntityUnitTest
         return [
             ['id'],
             ['name'],
-            ['slug'],
-            ['summary'],
-            ['status']
+            ['projects']
         ];
     }
 
@@ -58,17 +58,23 @@ class ProjectTest extends AbstractEntityUnitTest
     {
         return [
             ['getId', null, null],
-            ['getName', 'setName', 'Test Project'],
-            ['getSummary', 'setSummary', 'Project summary'],
-            ['getStatus', 'setStatus', new ProjectStatus()]
+            ['getName', 'setName', 'Active']
         ];
     }
 
-    public function testSlugGetterSetters(): void
+    public function testGetProjectsReturnsArrayCollection(): void
     {
-        $project = new Project();
+        $status = new ProjectStatus();
 
-        $project->setSlug('Test Project');
-        self::assertSame('test-project', $project->getSlug());
+        self::assertInstanceOf(ArrayCollection::class, $status->getProjects());
+    }
+
+    public function testProjectStatusConstructorPassesProvidedArrayCollectionToProjectsProperty(): void
+    {
+        $collection = new ArrayCollection();
+
+        $status = new ProjectStatus($collection);
+
+        self::assertSame($collection, $status->getProjects());
     }
 }

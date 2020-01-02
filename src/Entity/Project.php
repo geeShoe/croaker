@@ -57,6 +57,12 @@ class Project
     private ?string $summary = null;
 
     /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\ProjectStatus", inversedBy="projects")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private ProjectStatus $status;
+
+    /**
      * @return Uuid|null
      */
     public function getId(): ?Uuid
@@ -117,6 +123,25 @@ class Project
     public function setSummary(?string $summary): self
     {
         $this->summary = $summary;
+
+        return $this;
+    }
+
+    /**
+     * @return ProjectStatus
+     */
+    public function getStatus(): ProjectStatus
+    {
+        return $this->status;
+    }
+
+    /**
+     * @param ProjectStatus $status
+     * @return $this
+     */
+    public function setStatus(ProjectStatus $status): self
+    {
+        $this->status = $status;
 
         return $this;
     }

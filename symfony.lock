@@ -117,6 +117,21 @@
     "phpdocumentor/type-resolver": {
         "version": "1.0.1"
     },
+    "phpstan/extension-installer": {
+        "version": "1.0.3"
+    },
+    "phpstan/phpstan": {
+        "version": "0.12.3"
+    },
+    "phpstan/phpstan-doctrine": {
+        "version": "0.12.6"
+    },
+    "phpstan/phpstan-phpunit": {
+        "version": "0.12.3"
+    },
+    "phpstan/phpstan-symfony": {
+        "version": "0.12.1"
+    },
     "psr/cache": {
         "version": "1.0.1"
     },
@@ -132,6 +147,9 @@
     "psr/log": {
         "version": "1.1.2"
     },
+    "roave/security-advisories": {
+        "version": "dev-master"
+    },
     "sensio/framework-extra-bundle": {
         "version": "5.2",
         "recipe": {
@@ -142,6 +160,18 @@
         },
         "files": [
             "config/packages/sensio_framework_extra.yaml"
+        ]
+    },
+    "squizlabs/php_codesniffer": {
+        "version": "3.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "3.0",
+            "ref": "0dc9cceda799fd3a08b96987e176a261028a3709"
+        },
+        "files": [
+            "phpcs.xml.dist"
         ]
     },
     "symfony/asset": {

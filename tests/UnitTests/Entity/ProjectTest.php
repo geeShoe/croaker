@@ -15,18 +15,30 @@
  * limitations under the License.
  */
 
-namespace App\Tests\UnitTests;
+namespace App\Tests\UnitTests\Entity;
 
 use App\Entity\Project;
 use App\Tests\Contract\AbstractEntityUnitTest;
 
+/**
+ * Class ProjectTest
+ *
+ * @package App\Tests\UnitTests\Entity
+ * @author  Jesse Rushlow <jr@geeshoe.com>
+ */
 class ProjectTest extends AbstractEntityUnitTest
 {
+    /**
+     * @inheritDoc
+     */
     protected function setUp(): void
     {
         $this->setEntitySignature(Project::class);
     }
 
+    /**
+     * @inheritDoc
+     */
     public function entityPropertyDataProvider(): array
     {
         return [
@@ -37,6 +49,9 @@ class ProjectTest extends AbstractEntityUnitTest
         ];
     }
 
+    /**
+     * @inheritDoc
+     */
     public function getterSetterDataProvider(): array
     {
         return [

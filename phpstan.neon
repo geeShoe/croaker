@@ -9,3 +9,14 @@ parameters:
     symfony:
         container_xml_path: '%currentWorkingDirectory%/var/cache/dev/App_KernelDevDebugContainer.xml'
     ignoreErrors:
+        -
+            message: '#expects class-string<object>, string given.#'
+            path: tests/Contract/AbstractEntityUnitTest.php
+
+        -
+            message: '#Unable to resolve the template type ExpectedType in call to method static method#'
+            path: tests/Contract/AbstractEntityUnitTest.php
+
+        -
+            message: '#You should use assertNull()#'
+            path: tests/Contract/AbstractEntityUnitTest.php

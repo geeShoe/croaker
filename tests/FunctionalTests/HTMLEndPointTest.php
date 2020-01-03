@@ -35,7 +35,8 @@ class HTMLEndPointTest extends WebTestCase
     public function endpointDataProvider(): array
     {
         return [
-            ['/']
+            ['/'],
+            ['/login']
         ];
     }
 

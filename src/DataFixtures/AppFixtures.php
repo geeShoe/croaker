@@ -34,7 +34,19 @@ class AppFixtures extends Fixture
 {
     protected ObjectManager $manager;
 
+    protected UserGenerator $userGenerator;
+
     protected ArrayCollection $projectStatuses;
+
+    /**
+     * AppFixtures constructor.
+     *
+     * @param UserGenerator $userGenerator
+     */
+    public function __construct(UserGenerator $userGenerator)
+    {
+        $this->userGenerator = $userGenerator;
+    }
 
     /**
      * @param ObjectManager $manager
@@ -43,12 +55,21 @@ class AppFixtures extends Fixture
     {
         $this->manager = $manager;
 
+        $this->persistUserEntities();
+
         $this->projectStatuses = DefaultData::createProjectStatusEntities();
 
         $this->persistProjectStatusEntities();
         $this->persistProjectEntities();
 
         $this->manager->flush();
+    }
+
+    protected function persistUserEntities(): void
+    {
+        $user = $this->userGenerator->getDummyUser();
+
+        $this->manager->persist($user);
     }
 
     protected function persistProjectStatusEntities(): void

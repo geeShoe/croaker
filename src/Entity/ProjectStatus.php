@@ -22,6 +22,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Ramsey\Uuid\UuidInterface;
 
 /**
  * Class ProjectStatus
@@ -39,7 +40,7 @@ class ProjectStatus
      * @ORM\Column(type="uuid_binary_ordered_time", unique=true)
      * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidOrderedTimeGenerator")
      */
-    private ?string $id = null;
+    private ?UuidInterface $id = null;
 
     /**
      * @ORM\Column(type="string", length=25, unique=true)

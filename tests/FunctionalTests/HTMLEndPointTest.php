@@ -53,4 +53,12 @@ class HTMLEndPointTest extends WebTestCase
         self::assertResponseStatusCodeSame($status);
         self::assertResponseIsSuccessful("Route $uri failed!");
     }
+
+    public function testLogoutRedirectsToHomepage(): void
+    {
+        $client = self::createClient();
+        $client->request('GET', '/logout');
+
+        self::assertResponseRedirects('http://localhost/', 302);
+    }
 }

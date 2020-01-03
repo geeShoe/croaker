@@ -28,6 +28,8 @@ use Symfony\Component\Security\Core\User\UserInterface;
  *
  * @package App\Entity
  * @author  Jesse Rushlow <jr@geeshoe.com>
+ *
+ * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  */
 class User implements UserInterface
 {

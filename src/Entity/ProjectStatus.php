@@ -67,9 +67,9 @@ class ProjectStatus
     }
 
     /**
-     * @return string|null
+     * @return UuidInterface|null
      */
-    public function getId(): ?string
+    public function getId(): ?UuidInterface
     {
         return $this->id;
     }

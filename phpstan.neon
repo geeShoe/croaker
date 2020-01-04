@@ -23,3 +23,7 @@ parameters:
         -
             message: '#You should use assertNull()#'
             path: tests/Contract/AbstractEntityUnitTest.php
+
+        -
+            message: '#Method App\Entity\User::getSalt() should return string|null but return statement is missing.#'
+            path: src/Entity/User.php

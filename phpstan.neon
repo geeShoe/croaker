@@ -8,6 +8,9 @@ parameters:
         - %currentWorkingDirectory%/src/Migrations
     symfony:
         container_xml_path: '%currentWorkingDirectory%/var/cache/dev/App_KernelDevDebugContainer.xml'
+
+    checkGenericClassInNonGenericObjectType: false
+
     ignoreErrors:
         -
             message: '#expects class-string<object>, string given.#'

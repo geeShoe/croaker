@@ -1,0 +1,3 @@
+{% if error is defined and error is not null %}
+    <section class="flash-error"><p>{{ error.messageKey|trans(error.messageData, 'security') }}</p></section>
+{% endif %}

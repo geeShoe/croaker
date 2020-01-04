@@ -67,4 +67,31 @@ trait WebTestTrait
 
         return $client;
     }
+
+    /**
+     * Login using HTTP_BASIC authentication and make request
+     *
+     * @param string $uri
+     * @param string $username
+     * @param string $password
+     * @param bool   $redirects
+     * @return Crawler
+     */
+    public function makeAuthenticatedRequest(
+        string $uri,
+        string $username,
+        string $password,
+        bool $redirects = false
+    ): Crawler {
+        $client = static::createClient([], [
+            'PHP_AUTH_USER' => $username,
+            'PHP_AUTH_PW' => $password
+        ]);
+
+        if ($redirects) {
+            $client->followRedirects();
+        }
+
+        return $client->request('GET', $uri);
+    }
 }

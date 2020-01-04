@@ -19,6 +19,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Contract;
 
+use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Component\DomCrawler\Crawler;
 
 /**
@@ -45,5 +46,25 @@ trait WebTestTrait
         }
 
         return $client->request('GET', $uri);
+    }
+
+    /**
+     * Return KernelBrowser after making a request
+     *
+     * @param string $uri
+     * @param bool   $redirects
+     * @return KernelBrowser
+     */
+    public function makeRequestGetClient(string $uri, bool $redirects = false): KernelBrowser
+    {
+        $client = static::createClient();
+
+        if ($redirects) {
+            $client->followRedirects();
+        }
+
+        $client->request('GET', $uri);
+
+        return $client;
     }
 }

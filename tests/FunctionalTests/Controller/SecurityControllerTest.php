@@ -63,4 +63,81 @@ class SecurityControllerTest extends WebTestCase
 
         self::assertNotNull($form['_csrf_token']->getValue());
     }
+
+    public function testInvalidCSRFTokenSubmittedDisplaysError(): void
+    {
+        $client = $this->makeRequestGetClient('/login', true);
+
+        $crawler = $client->getCrawler();
+
+        $form = $crawler->selectButton('Sign in')->form();
+
+        $form['_csrf_token']->setValue('abcd');
+
+        $client->submit($form);
+
+        self::assertSelectorExists('.flash-error');
+        self::assertSelectorTextContains('.flash-error', 'Invalid CSRF token.');
+    }
+
+    /**
+     * @return array<array> [['username', 'password']]
+     */
+    public function badCredentialsDataProvider(): array
+    {
+        return [
+            'Bad username' => ['badUser', 'password'],
+            'Bad Password' => ['user', 'badPassword'],
+            'Bad user and password' => ['badUser', 'badPassword']
+        ];
+    }
+
+    /**
+     * @dataProvider badCredentialsDataProvider
+     * @param string $username
+     * @param string $password
+     */
+    public function testLoginFailureDisplaysError(string $username, string $password): void
+    {
+        $client = $this->makeRequestGetClient('/login', true);
+
+        $crawler = $client->getCrawler();
+
+        $form = $crawler->selectButton('Sign in')->form();
+
+        $form['username']->setValue($username);
+        $form['password']->setValue($password);
+
+        $client->submit($form);
+
+        self::assertSelectorExists('.flash-error');
+        self::assertSelectorTextContains('.flash-error', 'Invalid credentials.');
+
+        $container = $client->getKernel()->getContainer();
+        $authChecker = $container->get('security.authorization_checker');
+
+        self::assertFalse($authChecker->isGranted('ROLE_USER'));
+    }
+
+    public function testGoodCredentialsSuccessfullyLoginIn(): void
+    {
+        $client = $this->makeRequestGetClient('/login', true);
+
+        $crawler = $client->getCrawler();
+
+        $form = $crawler->selectButton('Sign in')->form();
+
+        $form['username']->setValue('user');
+        $form['password']->setValue('password');
+
+        $client->submit($form);
+
+        self::assertResponseIsSuccessful('Login failed...');
+        self::assertSelectorNotExists('.flash-error');
+
+        $container = $client->getKernel()->getContainer();
+        $authChecker = $container->get('security.authorization_checker');
+
+        self::assertTrue($authChecker->isGranted('ROLE_USER'));
+    }
 }

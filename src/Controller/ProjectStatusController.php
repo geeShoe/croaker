@@ -17,39 +17,29 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\FunctionalTests;
+namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use App\Entity\User;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * Class RestrictedEndpointTest
+ * Class ProjectStatusController
  *
- * @package App\Tests\FunctionalTests
+ * @package App\Controller
  * @author  Jesse Rushlow <jr@geeshoe.com>
  */
-class RestrictedEndpointTest extends WebTestCase
+class ProjectStatusController extends AbstractController
 {
     /**
-     * @return array<array<string>>
+     * @Route("/admin/project-status", methods={ "GET" }, name="project-status-manager")
+     * @return Response
      */
-    public function protectedRoutesProvider(): array
+    public function manager(): Response
     {
-        return [
-            ['/admin'],
-            ['/admin/project-status']
-        ];
-    }
+        $this->denyAccessUnlessGranted(User::ROLE_ADMIN);
 
-    /**
-     * @param string $uri
-     * @dataProvider protectedRoutesProvider
-     */
-    public function testRestrictedAreasAreDeniedAccessAndRedirectedToLogin(string $uri): void
-    {
-        $client = self::createClient();
-
-        $client->request('GET', $uri);
-
-        self::assertResponseRedirects('/login', 302);
+        return $this->render('project_status/admin_project_status.html.twig');
     }
 }

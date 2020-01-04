@@ -68,8 +68,10 @@ class AppFixtures extends Fixture
     protected function persistUserEntities(): void
     {
         $user = $this->userGenerator->getDummyUser();
+        $admin = $this->userGenerator->getDummyAdmin();
 
         $this->manager->persist($user);
+        $this->manager->persist($admin);
     }
 
     protected function persistProjectStatusEntities(): void

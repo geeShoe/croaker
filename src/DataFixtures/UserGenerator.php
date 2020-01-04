@@ -34,6 +34,10 @@ class UserGenerator
     public const USER_DISPLAY_NAME = 'User';
     public const USER_EMAIL = 'user@geeshoe.com';
     public const USER_PASSWORD = 'password';
+    public const ADMIN_USERNAME = 'admin';
+    public const ADMIN_DISPLAY_NAME = 'Admin';
+    public const ADMIN_EMAIL = 'admin@geeshoe.com';
+    public const ADMIN_PASSWORD = 'password';
 
     public UserPasswordEncoderInterface $encoder;
 
@@ -60,6 +64,25 @@ class UserGenerator
         $user->setEmail(self::USER_EMAIL);
 
         $password = $this->encoder->encodePassword($user, self::USER_PASSWORD);
+        $user->setPassword($password);
+
+        return $user;
+    }
+
+    /**
+     * Generate a dummy admin user account for testing / fixtures
+     *
+     * @return User
+     */
+    public function getDummyAdmin(): User
+    {
+        $user = new User();
+        $user->setUsername(self::ADMIN_USERNAME);
+        $user->setDisplayName(self::ADMIN_DISPLAY_NAME);
+        $user->setEmail(self::ADMIN_EMAIL);
+        $user->setRoles([User::ROLE_ADMIN]);
+
+        $password = $this->encoder->encodePassword($user, self::ADMIN_PASSWORD);
         $user->setPassword($password);
 
         return $user;

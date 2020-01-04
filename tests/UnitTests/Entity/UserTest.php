@@ -62,6 +62,12 @@ class UserTest extends AbstractEntityUnitTest
         ];
     }
 
+    public function testUserEntityDefinesUserRoles(): void
+    {
+        $this->assertSame('ROLE_USER', User::ROLE_USER);
+        $this->assertSame('ROLE_ADMIN', User::ROLE_ADMIN);
+    }
+
     public function testAllUsersHaveUserRole(): void
     {
         $result = new User();

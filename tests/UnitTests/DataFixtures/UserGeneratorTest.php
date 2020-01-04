@@ -53,8 +53,41 @@ class UserGeneratorTest extends TestCase
         $this->generator = new UserGenerator($this->encoder);
     }
 
-    public function testGetDummyUserReturnsValidUserEntity(): void
+    public function userDataProvider(): array
     {
+        return [
+            'Regular User' => [
+                'getDummyUser',
+                UserGenerator::USER_USERNAME,
+                UserGenerator::USER_DISPLAY_NAME,
+                UserGenerator::USER_EMAIL,
+                [User::ROLE_USER]
+            ],
+            'Admin User' => [
+                'getDummyAdmin',
+                UserGenerator::ADMIN_USERNAME,
+                UserGenerator::ADMIN_DISPLAY_NAME,
+                UserGenerator::ADMIN_EMAIL,
+                [User::ROLE_ADMIN, User::ROLE_USER]
+            ]
+        ];
+    }
+
+    /**
+     * @dataProvider userDataProvider
+     * @param string        $generatorMethod   UserGenerator method to get user entity
+     * @param string        $username
+     * @param string        $displayName
+     * @param string        $email
+     * @param array<string> $roles
+     */
+    public function testGetDummyUserReturnsValidUserEntity(
+        string $generatorMethod,
+        string $username,
+        string $displayName,
+        string $email,
+        array $roles
+    ): void {
         $this->setGenerator();
 
         $this->encoder
@@ -63,11 +96,12 @@ class UserGeneratorTest extends TestCase
             ->willReturn('password')
             ->with(self::isInstanceOf(User::class), UserGenerator::USER_PASSWORD);
 
-        $result = $this->generator->getDummyUser();
+        /** @var User $result */
+        $result = $this->generator->$generatorMethod();
 
-        $this->assertSame(UserGenerator::USER_USERNAME, $result->getUsername());
-        $this->assertSame(UserGenerator::USER_DISPLAY_NAME, $result->getDisplayName());
-        $this->assertSame(UserGenerator::USER_EMAIL, $result->getEmail());
-        $this->assertSame([User::ROLE_USER], $result->getRoles());
+        $this->assertSame($username, $result->getUsername());
+        $this->assertSame($displayName, $result->getDisplayName());
+        $this->assertSame($email, $result->getEmail());
+        $this->assertSame($roles, $result->getRoles());
     }
 }

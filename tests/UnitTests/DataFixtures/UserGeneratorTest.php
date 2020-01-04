@@ -53,6 +53,9 @@ class UserGeneratorTest extends TestCase
         $this->generator = new UserGenerator($this->encoder);
     }
 
+    /**
+     * @return array<array> [[methodName, username, displayName, password, [userRoles]]]
+     */
     public function userDataProvider(): array
     {
         return [

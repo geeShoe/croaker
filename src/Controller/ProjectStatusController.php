@@ -20,6 +20,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Repository\ProjectStatusRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -32,6 +33,18 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class ProjectStatusController extends AbstractController
 {
+    private ProjectStatusRepository $repository;
+
+    /**
+     * ProjectStatusController constructor.
+     *
+     * @param ProjectStatusRepository $repository
+     */
+    public function __construct(ProjectStatusRepository $repository)
+    {
+        $this->repository = $repository;
+    }
+
     /**
      * @Route("/admin/project-status", methods={ "GET" }, name="project-status-manager")
      * @return Response
@@ -40,6 +53,10 @@ class ProjectStatusController extends AbstractController
     {
         $this->denyAccessUnlessGranted(User::ROLE_ADMIN);
 
-        return $this->render('project_status/admin_project_status.html.twig');
+        $statuses = $this->repository->findAll();
+
+        return $this->render('project_status/admin_project_status.html.twig', [
+            'statuses' => $statuses
+        ]);
     }
 }

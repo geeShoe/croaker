@@ -1,4 +1,7 @@
 # Croaker
+
+[![Build Status](https://travis-ci.com/geeShoe/croaker.svg?branch=master)](https://travis-ci.com/geeShoe/croaker)
+
 Croaker is an open source PHP project management application built on the Symfony Framework.
 
 _Croaker is currently in initial development. As such, some functionality, documentation and tests

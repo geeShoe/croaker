@@ -1,6 +1,8 @@
 {
+    "name": "geeshoe/croaker",
+    "description": "Croaker is an open source PHP project management application built on the Symfony Framework.",
     "type": "project",
-    "license": "proprietary",
+    "license": "Apache-2.0",
     "require": {
         "php": "^7.4",
         "ext-ctype": "*",

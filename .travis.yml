@@ -1,6 +1,5 @@
 language: php
 
-sudo: false
 cache:
   directories:
     - $HOME/.composer/cache/files
@@ -8,16 +7,17 @@ cache:
 
 env:
   global:
+    - APP_ENV="test"
     - PHPUNIT_FLAGS="-v"
     - SYMFONY_PHPUNIT_DIR="$HOME/symfony-bridge/.phpunit"
+
+addons:
+  mariadb: '10.4'
 
 matrix:
   fast_finish: true
   include:
-    # Minimum supported dependencies with the latest and oldest PHP version
-    - php: 7.4
-      env: COMPOSER_FLAGS="--prefer-stable --prefer-lowest" SYMFONY_DEPRECATIONS_HELPER="weak_vendors"
-      # Test the latest stable release
+    # Test the latest stable release
     - php: 7.4
       env: COVERAGE=true PHPUNIT_FLAGS="-v --coverage-text"
       # Latest commit to master
@@ -31,12 +31,12 @@ before_install:
   - if ! [ -z "$STABILITY" ]; then composer config minimum-stability ${STABILITY}; fi;
   - if ! [ -v "$DEPENDENCIES" ]; then composer require --no-update ${DEPENDENCIES}; fi;
 install:
-  # To be removed when this issue will be resolved: https://github.com/composer/composer/issues/5355
-  # - if [[ "$COMPOSER_FLAGS" == *"--prefer-lowest"* ]]; then composer update --prefer-dist --no-interaction --prefer-stable --quiet; fi
+  - sudo mariadb -e 'CREATE DATABASE croaker;'
+  - sudo mariadb -u root -e 'CREATE USER IF NOT EXISTS travis@localhost; GRANT ALL ON *.* TO travis@localhost;'
   - COMPOSER_MEMORY_LIMIT=-1 travis_retry composer update ${COMPOSER_FLAGS} --prefer-dist --no-interaction
-  - ./vendor/bin/simple-phpunit install
+  - php bin/console doctrine:migrations:migrate -n
+  - php bin/console doctrine:fixtures:load -n
+  - ./bin/phpunit
 script:
-  - composer validate --strict --no-check-lock
-  # simple-phpunit is the PHPUnit wrapper provided by the PHPUnit Bridge component and
-  # it helps with testing legacy code and deprecations (composer require symfony/phpunit-bridge)
-  - ./vendor/bin/simple-phpunit $PHPUNIT_FLAGS
+  - composer validate --no-check-lock
+  - ./bin/phpunit $PHPUNIT_FLAGS

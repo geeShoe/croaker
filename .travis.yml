@@ -31,8 +31,8 @@ before_install:
 - if ! [ -v "$DEPENDENCIES" ]; then composer require --no-update ${DEPENDENCIES};
   fi;
 install:
-- sudo mariadb -e 'CREATE DATABASE croaker;'
-- sudo mariadb -u root -e 'CREATE USER IF NOT EXISTS travis@localhost; GRANT ALL ON
+- sudo mysql -e 'CREATE DATABASE croaker;'
+- sudo mysql -u root -e 'CREATE USER IF NOT EXISTS travis@localhost; GRANT ALL ON
   *.* TO travis@localhost;'
 - COMPOSER_MEMORY_LIMIT=-1 travis_retry composer update ${COMPOSER_FLAGS} --prefer-dist
   --no-interaction

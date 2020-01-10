@@ -1,9 +1,11 @@
 language: php
 dist: trusty
+
 cache:
   directories:
   - "$HOME/.composer/cache/files"
   - "$HOME/symfony-bridge/.phpunit"
+
 env:
   global:
   - APP_ENV="test"
@@ -12,13 +14,16 @@ env:
 
 addons:
   mariadb: '10.4'
+
   code_climate:
     repo_token:
-      secure: EtRhPGYSbWutP+wZ+L8jFoqymf9wXo8gj1RxrlZrUlw9JmmhyjEG3wxLs0Lil1jKSFElqhw1Ldo1JbNvRiUuKCzTZSrcSiIdOBeZq4vCNFSefuMquM9vslR678+RyUznkxEzEbl/YJ7saJAG680omJonajYwN4dFqeZmq7dcTck7fGy7OE7sWHgJImJ76Fyu3PKwAfmDNX6tpKCgQRWXQEwY2kpnHymB6V+1yEFYjnd+s+fVHwL4hGF636lMXKK4NVMWulBihRkBfaGfSG11uNS5jmzyYkVG036y9fn30Zts1AQzdWqgQHgZTBvyqolf7TLuW2HhHAZ2bU6KEc9LiYT0RGZOM7EyviFjmJzoRmJGMnv2yem16m7my8lI2qdfCEsB7AY9TRaw5VYs2qYEYaaMvVIgkVBux8DVJ00zLgZCol84buW+ur+8mBuQIIFQpb7G9cxtnl5KGiU0gUfF3SyayU0azbiRBwFIOeb8h0U3PVX3gAx/uN2beeCqRIY+y5xNXbowpWrz/7GA4zCBvXiuvHNmItD50alU7olP5HKvw1M0fLn+JflODtf8nDCCdUjul5nmGRzSJXguecDz63Z6rVy2u6WrmCe4SgfJqlWR8c9NxKF09qti5WOYroK1ovKfwVO/LPR55fcSnmtCQyQTJcFoGTr1ZAYs6njGrOQ=
+      secure: "ysv7UaByTv0x2jMSBPYNI4/UJkSorjnoQyxX8d7gXQRseR2TWMK7SAeCADghCusTnaJ/QqzQve+sOzxbKc2HaH9A2gHBACv1yJ1j0s0M5TcUinpRFZDAX//2pdTFXk80SqEUkDqfuQ3BRHOkwq/JYamajh0OnDUucZhCzcVZ9eM6INGPBHVO+LgajIk5xIXTBsW9TSN2oeiiomoK450b6UcozE/DPGoUa6RgAzyoOrPoRjr1HsA1WHB2wRqFTdoHoP8foqMeg67OiOHbLNediekK9qBbUrc7SmIge3rc+jJQVUvw3+9t90JcW2Cyi3alEKG7FcWN/Zhun2IPEvo3LeAWRYf1xukLiM90YYSvVwwP3X/WAQ1nFTxqNJCRWTHMwqAKp1xLDaAWtiEpTd8rj95MfCtRXsy2VAAel0pshYlJ1RENO1zSvT4VpCZVZpFpnw4v4LSDds0zDDLcG3MwnQcM4xaxSSdf29j+DxRhxkw19sANx0zVnwywjduqZoEKbL/mMtqO0OXgCOIk188REXw1kJYwDAaFj4jEKhrhnXAWCLR1cAu9Jg1LepUBWV1+zDkRmaJEtX7Y+OXyYWK44n5gEbsoPmeHTeJDDueumEcIMFZYzQCdtdLCT23ANaKa75bxjWiu6aqNHK85IgAVZEo/bpS7HbuWkMTmx/DiIOY="
+
   sonarcloud:
     organization: geeshoe
     token:
       secure: Tt8MgwEWOFkG23hA9O0IWjXwXj0s2a8IgV8rDTWMi8CoP1rxZ17Z5pPXjSzOR/oAdXNUTQyjYoqy31+xil5A4+H3QCfreGU5rMTusXFQM52F+5A84ujqJrZRgUMWYJ69j205W05OGmtCXUNGJTB02yVzdMDTNwM1BIwEtBvu9EEDtCv7ezcQRwuUKKryPKhd9LGDnDU8jy5AYi0OHc5HFHaLkw9qVgTjctIUpQrfesAcDGNS5etT8WUk6vTfXyc1FpTP6dEvuBWF140BPnrJtnFlyaak509b4gEATcdBFv57dgEuL2dIPTciuE4Rhk7Y7BTGaR34zJI5wKuUOKhInmcy16/zWc9Wn5Nub/6NA66gFq9L2K12qREIW5zLgtIOt9nKFFooPtIkW4hdCkRy+qQm6xRyz0DaSia1QpHTBWEvFebToa+aPPOoZP9N6JMQnbKera34WV/hHODO2K1IQVd7Mr7ZN5fU3N/a6V7J4psfQnOTZdjrg/48jkJM5unkaVpfUNklQIzYuxUkvx2v/Gpmu+uCpjeAbueMk5ZJmK1H4OCA5S3UN85E3o4b/6ao1QWz65ckH4xkzfxt8+Vbt5NLc9wkz+XauZBOy1cbx5C0sp9JJRBTHKeEWgeBE4nMWrFjSVzZbNLD3bAmyR87DmvomxvGv7T7u+jyw3LCqWY=
+
 matrix:
   fast_finish: true
   include:
@@ -27,30 +32,30 @@ matrix:
   - php: 7.4
     env: STABILITY="dev"
   allow_failures:
-  - env: STABILITY="dev"
+    - env: STABILITY="dev"
+
 before_install:
-- if [[ $COVERAGE != true ]]; then phpenv config-rm xdebug.ini || true; fi
-- if ! [ -z "$STABILITY" ]; then composer config minimum-stability ${STABILITY}; fi;
-- if ! [ -v "$DEPENDENCIES" ]; then composer require --no-update ${DEPENDENCIES};
-  fi;
+  - if [[ $COVERAGE != true ]]; then phpenv config-rm xdebug.ini || true; fi
+  - if ! [ -z "$STABILITY" ]; then composer config minimum-stability ${STABILITY}; fi;
+  - if ! [ -v "$DEPENDENCIES" ]; then composer require --no-update ${DEPENDENCIES}; fi;
+
 install:
-- sudo mysql -e 'CREATE DATABASE croaker;'
-- sudo mysql -u root -e 'CREATE USER IF NOT EXISTS travis@localhost; GRANT ALL ON
-  *.* TO travis@localhost;'
-- COMPOSER_MEMORY_LIMIT=-1 travis_retry composer update ${COMPOSER_FLAGS} --prefer-dist
-  --no-interaction
-- php bin/console doctrine:migrations:migrate -n
-- php bin/console doctrine:fixtures:load -n
-- "./bin/phpunit"
+  - sudo mysql -e 'CREATE DATABASE croaker;'
+  - sudo mysql -u root -e 'CREATE USER IF NOT EXISTS travis@localhost; GRANT ALL ON *.* TO travis@localhost;'
+  - COMPOSER_MEMORY_LIMIT=-1 travis_retry composer update ${COMPOSER_FLAGS} --prefer-dist --no-interaction
+  - php bin/console doctrine:migrations:migrate -n
+  - php bin/console doctrine:fixtures:load -n
+  - "./bin/phpunit"
 
 before_script:
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
   - ./cc-test-reporter before-build
+
 script:
-- composer validate --no-check-lock
-- "./bin/phpunit $PHPUNIT_FLAGS --log-junit=phpunit.report.xml"
-- sonar-scanner
+  - composer validate --no-check-lock
+  - "./bin/phpunit $PHPUNIT_FLAGS --log-junit=phpunit.report.xml"
+  - sonar-scanner
 
 after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT

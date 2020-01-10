@@ -1,6 +1,8 @@
 # Croaker
 
 [![Build Status](https://travis-ci.com/geeShoe/croaker.svg?branch=master)](https://travis-ci.com/geeShoe/croaker)
+[![Maintainability](https://api.codeclimate.com/v1/badges/c39cdd2d3a3e2cdb9884/maintainability)](https://codeclimate.com/github/geeShoe/croaker/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/c39cdd2d3a3e2cdb9884/test_coverage)](https://codeclimate.com/github/geeShoe/croaker/test_coverage)
 
 Croaker is an open source PHP project management application built on the Symfony Framework.
 

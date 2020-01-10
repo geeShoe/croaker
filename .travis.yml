@@ -55,4 +55,4 @@ script:
 #  - sonar-scanner
 
 after_script:
-  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT --debug
+  - if [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ $COVERAGE == true ]; then ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT; fi

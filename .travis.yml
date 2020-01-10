@@ -22,7 +22,7 @@ matrix:
   - php: 7.4
     env: COVERAGE=true PHPUNIT_FLAGS="-v --coverage-text --coverage-clover=coverage-clover.xml"
   - php: 7.4
-    env: STABILITY="dev" PHPUNIT_FLAGS="-v --log-junit=phpunit.report.xml"
+    env: STABILITY="dev"
   allow_failures:
   - env: STABILITY="dev"
 before_install:
@@ -41,5 +41,5 @@ install:
 - "./bin/phpunit"
 script:
 - composer validate --no-check-lock
-- "./bin/phpunit $PHPUNIT_FLAGS"
+- "./bin/phpunit $PHPUNIT_FLAGS --log-junit=phpunit.report.xml"
 - sonar-scanner

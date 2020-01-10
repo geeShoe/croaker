@@ -17,10 +17,6 @@ env:
 addons:
   mariadb: '10.4'
 
-  code_climate:
-    repo_token:
-      secure: "ysv7UaByTv0x2jMSBPYNI4/UJkSorjnoQyxX8d7gXQRseR2TWMK7SAeCADghCusTnaJ/QqzQve+sOzxbKc2HaH9A2gHBACv1yJ1j0s0M5TcUinpRFZDAX//2pdTFXk80SqEUkDqfuQ3BRHOkwq/JYamajh0OnDUucZhCzcVZ9eM6INGPBHVO+LgajIk5xIXTBsW9TSN2oeiiomoK450b6UcozE/DPGoUa6RgAzyoOrPoRjr1HsA1WHB2wRqFTdoHoP8foqMeg67OiOHbLNediekK9qBbUrc7SmIge3rc+jJQVUvw3+9t90JcW2Cyi3alEKG7FcWN/Zhun2IPEvo3LeAWRYf1xukLiM90YYSvVwwP3X/WAQ1nFTxqNJCRWTHMwqAKp1xLDaAWtiEpTd8rj95MfCtRXsy2VAAel0pshYlJ1RENO1zSvT4VpCZVZpFpnw4v4LSDds0zDDLcG3MwnQcM4xaxSSdf29j+DxRhxkw19sANx0zVnwywjduqZoEKbL/mMtqO0OXgCOIk188REXw1kJYwDAaFj4jEKhrhnXAWCLR1cAu9Jg1LepUBWV1+zDkRmaJEtX7Y+OXyYWK44n5gEbsoPmeHTeJDDueumEcIMFZYzQCdtdLCT23ANaKa75bxjWiu6aqNHK85IgAVZEo/bpS7HbuWkMTmx/DiIOY="
-
   sonarcloud:
     organization: geeshoe
     token:

@@ -20,9 +20,9 @@ matrix:
   fast_finish: true
   include:
   - php: 7.4
-    env: COVERAGE=true PHPUNIT_FLAGS="-v --coverage-text"
+    env: COVERAGE=true PHPUNIT_FLAGS="-v --coverage-text --coverage-clover=coverage-clover.xml"
   - php: 7.4
-    env: STABILITY="dev"
+    env: STABILITY="dev" PHPUNIT_FLAGS="-v --log-junit=phpunit.report.xml"
   allow_failures:
   - env: STABILITY="dev"
 before_install:

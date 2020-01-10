@@ -9,13 +9,13 @@ env:
   - APP_ENV="test"
   - PHPUNIT_FLAGS="-v"
   - SYMFONY_PHPUNIT_DIR="$HOME/symfony-bridge/.phpunit"
-#  - secure: sI6H41jH1QDePeiYD8grfE7TA7vPXMEs8VczCYbcd7UmruhY52IUzoW1i2mk69g6w4RGjC8NApISJJL209B9M+8Ybr4oJM0cW9qDra7M34zYbKCNjGOCktRE9eiiQF42z6Slk63N2TeCfzzdg9BKWr4ctY5bDomSWKBXISSTvqJTNAmJzELi9rSnRiIknyfBrQypmsgPzqPbuWO8TNaV/NnzpughKyEAssa7qClUXwPoLU99h6XM5Lf3cJQROLWIh5QnatL2n8YHoRJa7FqXkWqD6IDKDMwJkz+DItAtttyQLBPUeLT1i8VTlBxAE1p3ppDvo3k8mb24h8f9TXlCqtzxxwzyEs8xF2s0PbcPMc01pk2WB8da9YCij/E+mjd7kVzx44AoSHp26imXGTfmu1V1rE/9uMCVIErgyKrK6l1j7XfLNL+q6lP3MhZUAu5Ti5uJwfONr+eiemsiLlnwAErEiLtq4lljnhcPBR3Dr54wL1jph4SMNy0U0ztefmhVLdBnluwnPSujRjK/SsEkP+PpW/IdQIyj8MLR5ujKZTHoWxfMn/qVy6m0E7UWC1sHeVUz/Dn6O+mJ6HrQIh+EaV9OEdZrfMB5Y3Jp0DOGNpu1dA4NbEEF0sZggO6H1kArnc6fd1o0A8nRTjhySYvD0s5zDhFNb48aFHyaw7g+KKM=
+  - secure: EtRhPGYSbWutP+wZ+L8jFoqymf9wXo8gj1RxrlZrUlw9JmmhyjEG3wxLs0Lil1jKSFElqhw1Ldo1JbNvRiUuKCzTZSrcSiIdOBeZq4vCNFSefuMquM9vslR678+RyUznkxEzEbl/YJ7saJAG680omJonajYwN4dFqeZmq7dcTck7fGy7OE7sWHgJImJ76Fyu3PKwAfmDNX6tpKCgQRWXQEwY2kpnHymB6V+1yEFYjnd+s+fVHwL4hGF636lMXKK4NVMWulBihRkBfaGfSG11uNS5jmzyYkVG036y9fn30Zts1AQzdWqgQHgZTBvyqolf7TLuW2HhHAZ2bU6KEc9LiYT0RGZOM7EyviFjmJzoRmJGMnv2yem16m7my8lI2qdfCEsB7AY9TRaw5VYs2qYEYaaMvVIgkVBux8DVJ00zLgZCol84buW+ur+8mBuQIIFQpb7G9cxtnl5KGiU0gUfF3SyayU0azbiRBwFIOeb8h0U3PVX3gAx/uN2beeCqRIY+y5xNXbowpWrz/7GA4zCBvXiuvHNmItD50alU7olP5HKvw1M0fLn+JflODtf8nDCCdUjul5nmGRzSJXguecDz63Z6rVy2u6WrmCe4SgfJqlWR8c9NxKF09qti5WOYroK1ovKfwVO/LPR55fcSnmtCQyQTJcFoGTr1ZAYs6njGrOQ=
 addons:
   mariadb: '10.4'
   sonarcloud:
-    organization: "geeshoe"
+    organization: geeshoe
     token:
-      secure: "Tt8MgwEWOFkG23hA9O0IWjXwXj0s2a8IgV8rDTWMi8CoP1rxZ17Z5pPXjSzOR/oAdXNUTQyjYoqy31+xil5A4+H3QCfreGU5rMTusXFQM52F+5A84ujqJrZRgUMWYJ69j205W05OGmtCXUNGJTB02yVzdMDTNwM1BIwEtBvu9EEDtCv7ezcQRwuUKKryPKhd9LGDnDU8jy5AYi0OHc5HFHaLkw9qVgTjctIUpQrfesAcDGNS5etT8WUk6vTfXyc1FpTP6dEvuBWF140BPnrJtnFlyaak509b4gEATcdBFv57dgEuL2dIPTciuE4Rhk7Y7BTGaR34zJI5wKuUOKhInmcy16/zWc9Wn5Nub/6NA66gFq9L2K12qREIW5zLgtIOt9nKFFooPtIkW4hdCkRy+qQm6xRyz0DaSia1QpHTBWEvFebToa+aPPOoZP9N6JMQnbKera34WV/hHODO2K1IQVd7Mr7ZN5fU3N/a6V7J4psfQnOTZdjrg/48jkJM5unkaVpfUNklQIzYuxUkvx2v/Gpmu+uCpjeAbueMk5ZJmK1H4OCA5S3UN85E3o4b/6ao1QWz65ckH4xkzfxt8+Vbt5NLc9wkz+XauZBOy1cbx5C0sp9JJRBTHKeEWgeBE4nMWrFjSVzZbNLD3bAmyR87DmvomxvGv7T7u+jyw3LCqWY="
+      secure: Tt8MgwEWOFkG23hA9O0IWjXwXj0s2a8IgV8rDTWMi8CoP1rxZ17Z5pPXjSzOR/oAdXNUTQyjYoqy31+xil5A4+H3QCfreGU5rMTusXFQM52F+5A84ujqJrZRgUMWYJ69j205W05OGmtCXUNGJTB02yVzdMDTNwM1BIwEtBvu9EEDtCv7ezcQRwuUKKryPKhd9LGDnDU8jy5AYi0OHc5HFHaLkw9qVgTjctIUpQrfesAcDGNS5etT8WUk6vTfXyc1FpTP6dEvuBWF140BPnrJtnFlyaak509b4gEATcdBFv57dgEuL2dIPTciuE4Rhk7Y7BTGaR34zJI5wKuUOKhInmcy16/zWc9Wn5Nub/6NA66gFq9L2K12qREIW5zLgtIOt9nKFFooPtIkW4hdCkRy+qQm6xRyz0DaSia1QpHTBWEvFebToa+aPPOoZP9N6JMQnbKera34WV/hHODO2K1IQVd7Mr7ZN5fU3N/a6V7J4psfQnOTZdjrg/48jkJM5unkaVpfUNklQIzYuxUkvx2v/Gpmu+uCpjeAbueMk5ZJmK1H4OCA5S3UN85E3o4b/6ao1QWz65ckH4xkzfxt8+Vbt5NLc9wkz+XauZBOy1cbx5C0sp9JJRBTHKeEWgeBE4nMWrFjSVzZbNLD3bAmyR87DmvomxvGv7T7u+jyw3LCqWY=
 matrix:
   fast_finish: true
   include:
@@ -39,7 +39,15 @@ install:
 - php bin/console doctrine:migrations:migrate -n
 - php bin/console doctrine:fixtures:load -n
 - "./bin/phpunit"
+
+before_script:
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
 script:
 - composer validate --no-check-lock
 - "./bin/phpunit $PHPUNIT_FLAGS --log-junit=phpunit.report.xml"
 - sonar-scanner
+
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT

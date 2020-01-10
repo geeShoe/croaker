@@ -38,16 +38,16 @@ before_install:
   - if ! [ -v "$DEPENDENCIES" ]; then composer require --no-update ${DEPENDENCIES}; fi;
 
 install:
-  - sudo mysql -e 'CREATE DATABASE croaker;'
-  - sudo mysql -u root -e 'CREATE USER IF NOT EXISTS travis@localhost; GRANT ALL ON *.* TO travis@localhost;'
   - COMPOSER_MEMORY_LIMIT=-1 travis_retry composer update ${COMPOSER_FLAGS} --prefer-dist --no-interaction
-  - php bin/console doctrine:migrations:migrate -n
-  - php bin/console doctrine:fixtures:load -n
-  - "./bin/phpunit"
-
-before_script:
+  - if [ ! -d "bin/.phpunit" ]; then "./bin/phpunit"; fi;
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
+
+before_script:
+  - sudo mysql -e 'CREATE DATABASE croaker;'
+  - sudo mysql -u root -e 'CREATE USER IF NOT EXISTS travis@localhost; GRANT ALL ON *.* TO travis@localhost;'
+  - php bin/console doctrine:migrations:migrate -n
+  - php bin/console doctrine:fixtures:load -n
   - ./cc-test-reporter before-build
 
 script:

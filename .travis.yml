@@ -57,7 +57,7 @@ before_script:
 script:
   - composer validate --no-check-lock
   - "./bin/phpunit $PHPUNIT_FLAGS --log-junit=phpunit.report.xml"
-  - sonar-scanner
+#  - sonar-scanner
 
 after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT --debug
